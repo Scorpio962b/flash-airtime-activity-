@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Flash Wallet — Buy airtime (demo)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0d110e; color: #e6ede4; max-width: 440px; margin: 48px auto; }
+    label { display: block; margin-top: 16px; }
+    input, select { width: 100%; padding: 8px; font-size: 16px; box-sizing: border-box; }
+    button { margin-top: 20px; padding: 10px 16px; background: #1dfa0f; border: 0; font-weight: 700; }
+    [data-result="error"] { color: #ff8a8a; }
+    [data-result="success"] { color: #1dfa0f; }
+  </style>
+  <script src="/airtime-rules.js"></script>
+</head>
+<body>
+  <h1>Buy airtime</h1>
+  <p>Wallet balance: <strong data-testid="balance"></strong></p>
+  <form id="airtime-form">
+    <label for="network">Network</label>
+    <select id="network" name="network">
+      <option value="">Choose a network</option>
+      <option>Vodacom</option>
+      <option>MTN</option>
+      <option>Cell C</option>
+      <option>Telkom</option>
+    </select>
+    <label for="cellphone">Cellphone number</label>
+    <input id="cellphone" name="cellphone" inputmode="numeric">
+    <label for="amount">Airtime amount (R)</label>
+    <input id="amount" name="amount" inputmode="decimal">
+    <button type="submit">Buy airtime</button>
+  </form>
+  <p data-testid="airtime-result" role="status"></p>
+  <script>
+    // Every page load starts from a fresh R200.00 wallet, so each test is independent.
+    let balanceCents = STARTING_BALANCE_CENTS;
+    const balanceEl = document.querySelector('[data-testid="balance"]');
+    const resultEl = document.querySelector('[data-testid="airtime-result"]');
+    balanceEl.textContent = formatZar(balanceCents);
+    document.getElementById('airtime-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const result = evaluatePurchase(
+        balanceCents,
+        document.getElementById('network').value,
+        document.getElementById('cellphone').value.trim(),
+        document.getElementById('amount').value.trim()
+      );
+      balanceCents = result.balanceCents;
+      resultEl.dataset.result = result.outcome;
+      resultEl.textContent = result.message;
+      balanceEl.textContent = formatZar(balanceCents);
+    });
+  </script>
+</body>
+</html>

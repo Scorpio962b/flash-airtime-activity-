@@ -1,0 +1,30 @@
+{
+  "name": "flash-airtime-activity-",
+  "version": "1.0.0",
+  "description": "This project outline our DDT activity",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:list": "playwright test --list",
+    "test:data": "playwright test tests/transfer.data-integrity.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scorpio962b/flash-airtime-activity-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Scorpio962b/flash-airtime-activity-/issues"
+  },
+  "homepage": "https://github.com/Scorpio962b/flash-airtime-activity-#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.3"
+  },
+  "dependencies": {
+    "typescript": "^7.0.2"
+  }
+}

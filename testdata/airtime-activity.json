@@ -1,0 +1,114 @@
+[
+  {
+    "caseId": "AIR-01",
+    "scenario": "standard Vodacom purchase",
+    "purchase": {
+      "network": "Vodacom",
+      "cellphone": "0821234567",
+      "amount": "50"
+    },
+    "expect": {
+      "outcome": "success",
+      "message": "Airtime purchased: R50 Vodacom airtime for 0821234567",
+      "walletBalance": "R150.00"
+    }
+  },
+  {
+    "caseId": "AIR-02",
+    "scenario": "spend the whole wallet",
+    "purchase": {
+      "network": "MTN",
+      "cellphone": "0831234567",
+      "amount": "200"
+    },
+    "expect": {
+      "outcome": "success",
+      "message": "Airtime purchased: R200 MTN airtime for 0831234567",
+      "walletBalance": "R0.00"
+    }
+  },
+  {
+    "caseId": "AIR-03",
+    "scenario": "minimum airtime amount",
+    "purchase": {
+      "network": "Cell C",
+      "cellphone": "0841234567",
+      "amount": "5"
+    },
+    "expect": {
+      "outcome": "success",
+      "message": "Airtime purchased: R5 Cell C airtime for 0841234567",
+      "walletBalance": "R195.00"
+    }
+  },
+  {
+    "caseId": "AIR-04",
+    "scenario": "below the minimum amount",
+    "purchase": {
+      "network": "Telkom",
+      "cellphone": "0811234567",
+      "amount": "4"
+    },
+    "expect": {
+      "outcome": "error",
+      "message": "Airtime amount must be between R5 and R500",
+      "walletBalance": "R200.00"
+    }
+  },
+  {
+    "caseId": "AIR-05",
+    "scenario": "allowed amount but not enough funds",
+    "purchase": {
+      "network": "Vodacom",
+      "cellphone": "0821234567",
+      "amount": "300"
+    },
+    "expect": {
+      "outcome": "error",
+      "message": "Not enough funds in your Flash wallet",
+      "walletBalance": "R200.00"
+    }
+  },
+  {
+    "caseId": "AIR-06",
+    "scenario": "amount with cents",
+    "purchase": {
+      "network": "MTN",
+      "cellphone": "0831234567",
+      "amount": "12.50"
+    },
+    "expect": {
+      "outcome": "error",
+      "message": "Airtime is sold in whole rands",
+      "walletBalance": "R200.00"
+    }
+  },
+  {
+    "caseId": "AIR-07",
+    "scenario": "no network selected",
+    "purchase": {
+      "network": "",
+      "cellphone": "0821234567",
+      "amount": "50"
+    },
+    "expect": {
+      "outcome": "error",
+      "message": "Select a network",
+      "walletBalance": "R200.00"
+    }
+  },
+  {
+    "caseId": "AIR-08",
+    "scenario": "short number and letters for amount",
+    "purchase": {
+      "network": "Cell C",
+      "cellphone": "084123",
+      "amount": "abc"
+    },
+    "expect": {
+      "outcome": "error",
+      "message": "Enter a valid 10-digit cellphone number",
+      "walletBalance": "R200.00"
+    }
+  }
+]
