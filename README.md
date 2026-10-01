@@ -92,24 +92,20 @@ npm run test
 ## 📊 TypeScript Data Schema (`tests/types.ts`)
 
 ```typescript
-export interface ExpectedResult {
-  outcome: 'success' | 'failure';
-  message: string;
-  walletBalance: string;
-}
-
-export interface PurchaseData {
-  network: string;
-  cellphone: string;
-  amount: string;
-}
-
-export interface AirtimeTestCase {
+export interface AirtimeCase {
   caseId: string;
   scenario: string;
-  purchase: PurchaseData;
-  expect: ExpectedResult;
-}
+  purchase: {
+    network: string;
+    cellphone: string;
+    amount: string;
+  };
+  expect: {
+    outcome: 'success' | 'error';
+    message: string;
+    walletBalance: string;
+  };
+} 
 ```
 
 ---
