@@ -61,9 +61,6 @@ npm install
 # Install Playwright browser binaries
 npx playwright install chromium
 
-#To run all tests 
-npm run test 
-
 ```
 
 ---
