@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import type { AirtimeCase } from './types/Airtime';
 import airtime from '../testdata/airtime-activity.json'
-import { Network } from 'node:inspector/promises';
+
 
 const cases = airtime as AirtimeCase[];
 
